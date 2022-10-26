@@ -14,16 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+#       - name: RunPS - Get resource locations
+#         id: get_resource_location
+#         uses: azure/powershell@v1
+#         with:
+#           inlineScript: |
+#             $locationList = "uksouth"
+#             write-output locations=$locationList >> $GITHUB_OUTPUT
+#             write-output "*** List of Locations*** $locationList"
+#           azPSVersion: "latest"
+     
       - name: RunPS - Get resource locations
         id: get_resource_location
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
+        run: |
             $locationList = "uksouth"
-            write-output locations=$locationList >> $GITHUB_OUTPUT
-            write-output "*** List of Locations*** $locationList"
-          azPSVersion: "latest"
+            echo locations=$locationList >> $GITHUB_OUTPUT
+            echo "*** List of Locations*** $locationList"
           
+     
       - name: Format Json
         id: set_location_matrix
         run: |
