@@ -36,4 +36,6 @@ jobs:
         id: set_location_matrix
         run: |
           echo "Before restructure --- ${{ steps.get_resource_location.outputs.locations }}"
-
+          JSON="$( printf %s\\n ${{ steps.get_resource_location.outputs.locations }} | jq -R .|jq -s .)"
+          echo "matrix=$JSON" >> $GITHUB_OUTPUT
+          echo After restructure --- $JSON
