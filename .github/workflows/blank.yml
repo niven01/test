@@ -27,7 +27,7 @@ jobs:
       - name: RunPS - Get resource locations
         id: get_resource_location
         run: |
-            locationList="uksouth northeurope"
+            locationList={"uksouth northeurope"}
             echo locations=$locationList >> $GITHUB_OUTPUT
             echo "*** List of Locations*** $locationList"
           
@@ -37,5 +37,5 @@ jobs:
         run: |
           echo "Before restructure --- ${{ steps.get_resource_location.outputs.locations }}"
           JSON="$( printf %s\\n ${{ steps.get_resource_location.outputs.locations }} | jq -R .|jq -s .)"
-          echo "matrix={$JSON}" >> $GITHUB_OUTPUT
+          echo "matrix=$JSON" >> $GITHUB_OUTPUT
           echo After restructure --- $JSON
