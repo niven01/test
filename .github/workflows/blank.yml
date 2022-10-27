@@ -27,7 +27,7 @@ jobs:
       - name: RunPS - Get resource locations
         id: get_resource_location
         run: |
-            locationList={"uksouth northeurope"}
+            locationList=['uksouth' 'northeurope']
             echo locations=$locationList >> $GITHUB_OUTPUT
             echo "*** List of Locations*** $locationList"
           
